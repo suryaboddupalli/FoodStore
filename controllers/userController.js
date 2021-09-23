@@ -2,7 +2,7 @@ require('dotenv').config();
 const User = require('../model/userschema')
 const jwt = require('jsonwebtoken')
 const sceret = process.env.JWT_SCERET;
-const http = require('../constants/constants')
+const http = require('../constants/http')
 
 const register = async (req, res) => {
     try {

@@ -9,10 +9,10 @@ const storage = multer.diskStorage({
         callback(null, file.originalname);
     }
 })
+
 const upload = multer({ storage: storage })
 
 router.get('/', recipeController.recipeDetails);
-
 router.post('/add', upload.single('RecipeImg'), recipeController.addRecipe);
 
 module.exports = router;

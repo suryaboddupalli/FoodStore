@@ -11,11 +11,10 @@ const storage = multer.diskStorage({
         callback(null, file.originalname);
     }
 })
+
 const upload = multer({ storage: storage })
 
-
 router.get('/', hotelController.hotelDetails);
-
-router.post('/add', upload.single('HotelImg'), hotelController.addHotel)
+router.post('/add', upload.single('hotelImg'), hotelController.addHotel)
 
 module.exports = router

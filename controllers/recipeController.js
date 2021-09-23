@@ -1,6 +1,5 @@
 const Recipe = require('../model/recipeSchema')
-const http = require('../constants/constants')
-const Hotel = require('../model/hotelSchema')
+const http = require('../constants/http')
 
 const recipeDetails = async (req, res) => {
     try {
@@ -14,10 +13,10 @@ const recipeDetails = async (req, res) => {
 
 const addRecipe = async (req, res) => {
     try {
-        const { recipeName, Cost } = req.body
+        const { recipeName, cost } = req.body
         const { recipeImg } = req.file;
         const newRecipe = new Recipe(
-            { recipeName, Cost, recipeImg }
+            { recipeName, cost, recipeImg }
         )
         await newRecipe.save()
         res.send('Data saved')

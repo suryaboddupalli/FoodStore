@@ -1,5 +1,5 @@
 const Hotel = require('../model/hotelSchema')
-const http = require('../constants/constants')
+const http = require('../constants/http')
 
 const hotelDetails = async (req, res) => {
     try {
