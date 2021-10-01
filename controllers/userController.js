@@ -30,35 +30,30 @@ const userDetail = async (req, res) => {
         res.send('Internal Server Error')
     }
 }
+
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
-        await User.findOne({ email: email, password: password })
-            .then((data) => {
-                if (data) {
-                    const payload = {
-                        id: data.id
-                    }
-                    const Admin = data.admin
-                    const Token = jwt.sign(payload, sceret)
-                    res.json({ Token, Admin })
-                }
-                else {
-                    res.status(http.BAD_REQUEST)
-                    res.json({
-                        error: 'Invalid Credentials'
-                    })
-                }
+        const user = await User.findOne({ email: email, password: password })
+        if (user) {
+            const payload = {
+                id: user.id
+            }
+            const Admin = user.admin
+            const Token = jwt.sign(payload, sceret)
+            res.json({ Token, Admin })
+        } else {
+            res.status(http.BAD_REQUEST)
+            res.json({
+                error: 'Invalid Credentials'
             })
-            .catch((error) => {
-                res.send(error)
-            })
-    } catch (error) {
+        }
+    }
+    catch (error) {
         res.status(http.INTERNAL_SERVER_ERROR)
         res.send('Internal Server Error')
     }
 }
-
 
 module.exports = {
     register, login, userDetail

@@ -11,7 +11,7 @@ const hotelSchema = new mongoose.Schema({
         type: String
     },
     hotelImg: {
-        type: String
+        type: String,
     }
 })
 

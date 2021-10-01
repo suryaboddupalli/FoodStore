@@ -18,10 +18,8 @@ const userSchema = new mongoose.Schema({
     },
     admin: {
         type: Boolean,
-
     }
 }, { timestamps: true }
 )
-
 
 module.exports = mongoose.model('User', userSchema)
